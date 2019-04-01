@@ -1,0 +1,40 @@
+2015-12-01
+深圳市艾磊企业管理技术有限公司
+招聘岗位：Asp.Net软件工程师
+
+1.C#的错误处理机制
+  try-catch
+
+2.public、private、protected、internal修饰符的区别
+  public:公有成员，没有访问限制
+  private：私有成员，在类的内部才可以访问
+  protected：保护成员，该类内部和继承类中可以访问
+  internal：在同一命名空间内可以访问
+
+3.如何处理并发数据(300万条)
+  负载均衡加队列
+
+4.String和StringBuilder的区别
+  String类有不可改变性。每次执行字符操作时，都会创建一个新的String对象
+  StringBuilder是线程不安全的，运行效率高，节省内存
+
+5.string str = ""和string str = null的区别
+  前者表示一个空字符串，被实例化了，占用了内存空间
+  后者表示一个空引用，没有占用内存空间
+
+6.1,1,2,3,5,8,13,21,34求第30个数是多少（要求使用递归算法）
+  public static int Foo(int i) 
+  { 
+	if(i > 0 && i <= 2) 
+	{
+	    return 1; 
+	}
+	else 
+	{
+	    return Foo(i - 1) + Foo(i - 2);
+	} 
+   } 
+
+7.编程实现一个冒泡排序算法
+
+8.编程实现九九乘法算法

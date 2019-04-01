@@ -1,0 +1,24 @@
+2015-12-2
+深圳市优联软件服务有限公司
+招聘岗位：C#工程师(该公司主要做c/s)
+
+1.sql server创建触发器时会自动生成哪两张表
+  deleted和inserted表，它们是逻辑（概念）表。也可理解为是临时表。
+  当你插入的记录是新的，可以在Inserted表中找到。
+  当你更新的记录是新的，可以在Inserted表中找到，被更新的记录是旧的，所以可以在Deleted表中找到。
+  当你删除的记录是旧的，所以可以在Deleted表中找到。
+
+2.Ado.Net连接字符串有几部分组成
+  服务名，数据库名，身份
+
+3.集合的命名空间
+   System.Collections.Generic
+
+4.Linq的命名空间
+  System.Linq
+
+5.T-Sql中表连接以及关键字
+  有三种：内连接(inner join)、外连接(left(right) outer join)、交叉连接
+
+6.如何处理并发数据
+  负载均衡加队列

@@ -1,0 +1,8 @@
+有些记不得了，没有笔试，都是问答......
+1、tomcat6和tomcat7有什么区别，除了tomcat还熟悉什么服务器？
+2、Struts2拦截器和Spring AOP有什么区别？
+3、String类的length方法的返回值是什么类型？
+4、谈谈hibernate二级缓存？还有并发访问的问题没答上来。
+5、基本数据类型占多少个字节？
+6、Struts2和Spring mvc有什么区别？
+7、我们的项目是部署在Linux上的，熟悉Linux吗？

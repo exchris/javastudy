@@ -1,0 +1,46 @@
+list集合，map集合，
+jsp隐含对象，数据库，jquery的选择器
+spring，springmvc，Mybatis
+还有数据库的存储机制
+还有css样式问的是外边距和内边距
+String和Stringbuffer的区别
+数据的左右连接 框架要配置哪些东西
+tomcat用的版本 功能 和怎么访问
+怎么修改端口
+jquery和ajax的区别
+怎么解析json
+jdbc在程序中怎么配置连接
+mybatis配置
+Spring mvc的流程
+Struts1 和struts2的区别。
+String MVC的配置文件是什么
+oarcle实现分页查询
+mysql的怎么获得当前实现 oracle怎么获得当前时间 java里面怎么获得当前时间 
+Struts2里面的namecpqce有什么用
+Struts2底层是怎么实现和action的映射的  （反射机制 这个常被问到）
+mysql和oracle里面都有的函数（说几个简单的就行 count sum之类的）
+ajax有几种发送请求的方式 
+简历里面用了哪些技术的时候如果写了strtus和StringMVC的话就不要写Servlet了 各种奇怪  
+简历上面写的技能和项目用了哪些技术方面
+哪几个框架的作用和servlet是一样的？ （Springmvc Struts 都实现了mvc模式）
+
+
+左外链接
+select  * from table1 left join table 2 on 条件
+
+存储过程 写过 
+create procedure PRC_TEST (@start_ID int, @end_ID int) 
+as 
+begin 
+delete 表1 where ID > @start_ID and ID < @end_ID 
+update 表2 set STATUS = '已解除' where ID > @start_ID and ID < @end_ID 
+end 
+怎么用这个存储过程呢？ 
+SQL里面这样执行：exc PRC_TEST 50, 2000 ；
+java里面的执行要通过连接来执行
+connection的prasecallstatement一般能说出这个函数名就可以了 
+
+
+
+
+

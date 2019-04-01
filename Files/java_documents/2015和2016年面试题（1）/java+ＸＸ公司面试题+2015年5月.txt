@@ -1,0 +1,100 @@
+1. 笔试
+1）java基础部分
+Q：Java面向对象有哪些特征？
+A：封装、继承、多态。
+Q：short s1=1;s1=s1+1有什么错？
+      short s1=1;s1+=1;有什么错？
+A：第一个是有错的，short在内存中占2个字节，而整数1默认为int型占4个字节，s1+1其实这个时候就向上转型为int类型了，因此第一行代码必须强转才行。第二个之所以可以是以为这句话翻译过来就是s1++，也就是short类型的数据自身加增1，因此不会有问题。
+Q：静态成员类、非静态成员类有什么区别？什么是匿名内部类？
+A：静态成员类相当于外部类的静态成员，是外部类在加载的时候进行初始化，非静态成员类相当于外部类的普通成员，当外部类创建对象的时候才会初始化。匿名内部一般都是在方法里面直接通过new ClassName(){};形式的类。比如我们new Thread（new Runnable(){}）.start()；就用到了匿名内部类。
+Q：abstract class 和 interface有什么区别？
+A：前者是抽象类，可以有抽象方法，也可以没有。后者是接口，只能有抽象方法。他们都不能创建对象，需要被继承。
+Q：ArrayList是不是线程安全的？如果不是，如何是ArrayList成为线程安全的？
+A：不安全的。可以使用Collections.synchronizedList(list)将list变为线程安全的。
+Q：是否可以继承String类？
+A：不可以，因为String类是final类。为啥不解释了吧。
+Q：以下两条语句返回值为true的有：
+     A："yiyaowang"=="yiyaowang";
+     B:   "yiyaowang".equals(new String("yiyaowang"));
+A：第一个返回true，都是字符串常量，存储在字符串常量池中，且只有一份。第二个返回true，用equals比较的是字符串内容。
+Q：当一个对象被当做参数传递到一个方法后，此方法可以改变这个对象的属性，并可返回变化后的结果，那么这里到底是值传递还是引用传递？
+A：java中只有值传递，没有引用传递。这里的引用本身就是值，传递的是引用这个值。
+Q：定义类A和类B如下：
+class A{
+int a=1;
+double d =2.0;
+void show(){
+System.out.println("Class A:a="+a+"\t"+d);
+}
+}
+class B extends A{
+float a =3.0f;
+String d = "Hello World!";
+void show(){
+  super.show();
+  System.out.println("Class B:a="+a+"\td="+d);
+}
+}
+(1)若在应用程序的main方法中有以下语句：
+    A a = new A();
+    a.show();
+    则输出结果是？
+(2)若在应用程序的main方法中定义类B的对象b:
+    A b = new B();
+   b.show();
+   则输出结果是？
+A：第一个是ClassA ：a=1     d=2.0
+     第二个是ClassA ：a =1    d=2.0  
+                    ClassB : a=3.0   d=Hello World!
+Q：heap和stack有什么区别？
+A：堆和栈。栈存放对象的引用，堆存放对象实体。堆中的对象是有jvm的垃圾回收器负责回收。
+Q：请描述下JVM加载class文件的原理机制。
+A：JVM加载class是动态性的，也就是当“需要”的时候才会加载，这是也是为节约JVM内存来考虑的。同时JVM的类加载是父类委托机制，这个机制简单来讲，就是“类装载器有载入类的需求时，会先请示其Parent使用其搜索路径帮忙载入，如果Parent 找不到,那么才由自己依照自己的搜索路径搜索类”。
+2）Android基础部分
+Q：如何适配不同屏幕分辨率的机型？
+A：屏幕适配方式就多了去了。Android系统本身提供了很多适配方法，比如存放图片资源的drawable目录根据不同分辨率的手机提供了drawable-hdpi、drawable-ldpi、drawable-mdpi、drawable-xhdpi等多中目录。我们只需把适应不同分辨率的多套图片分别放到对应的目录中即可。Android的layout、values目录也提供了类似drawable的适配功能。
+     但是在开发中，不可能针对不同的手机分辨率提供多种图片资源，这太耗费资源了。我们一般在写控件宽高的时候都会用dp单位取代pix单位。因为dp是一个相对单位，pix是绝对单位，使用dp替代pix也可以解决很多适配问题。dp跟pix之间可以通过公式进行转换。
+Q：View和ViewGroup的关系是什么？View的绘制过程（主要方法）有哪些？
+A：ViewGroup继承了View。onMesure、onLayout、onDraw。
+Q：Activity和Task的区别及启动模式有哪些？
+A：Activity运行Task中。Activity有四种启动模式。standard、singleTop、singleTask、singleInstance。standard:默认的启动模式，多个Activity位于同一Task中。singleTop，顾名知义就是Task栈顶只能有一个相同的Activity，singleTask就是一个Task中只有一个Activity，singleInstance就是一个Activity独享一个Task。
+PS：关于Activity的四种启动模式其实还有更详细的说法，我在上面就简单介绍一下了，如果面试官需要问的更详细再往深处介绍就行了。
+Q：如何注册BroadCastReceiver和Service？Service有什么特征，哪些情况会用到Service？
+A：都可以通过AndroidManifest.xml进行静态注册。不过BroadCastReceiver可以在代码中通过registReceiver方法来注册。Service运行在后天进程中，一般需要在后台一直运行的任务会让Service来完成。比如我们的telephoneService、locationService等等。
+Q：Android有哪些安全机制？
+A：权限机制。我们的应用只要涉及到了用户的隐私、网络都需要在AndroidManifest.xml中进行声明，这样用户在安装的时候可以根据你申请的权限进行判断是否允许应用的某些行为。
+Q：Handler机制的原理，内部是如何实现的？
+A：Android中handler多用于主线程和子线程之间的通信，比如在Android中子线程是不允许修改UI的，如果修改只能让子线程给主线程通过handler发送message，然后主线程进行修改。Handler整个机制的实现，还依赖Looper、Message两个核心内容。在主线程中Android默认给我们创建了Looper,当我们通过handler.sendMessage()后，该消息被添加到MessageQueue中，Looper.looper中有个while(true)的循环不停的从消息队列中取消息。取消息的过程是线程阻塞的，这样不至于在没有消息的时候过多的耗费CPU资源。
+Q：Thread和AsyncTask的区别是什么？
+A：AsyncTask是封装好的线程池，比起Thread+Handler的方式，AsyncTask在操作UI线程上更方便，因为onPreExecute()、onPostExecute()及更新UI方法onProgressUpdate()均运行在主线程中，这样就不用Handler发消息处理了；
+Q：说说MVC模式的原理，在Android中的运用。
+A：MVC是Model、View、Controller三部分组成的。其中View主要由xml布局文件，或者用代码编写动态布局来体现。Model是数据模型，其实类似javabean，不过这些JavaBean封装了对数据库、网络等的操作。Controller一般由Activity负责，它根据用户的输入，控制用户界面数据的显示及更新model对象的状态，它通过控制View和Model跟用户进行交互。
+Q：如何加载ndk库？如何在jni中注册native函数，有几种注册方式？
+A：通过System.loadLibrary("xxx")进行加载。其实native有几种注册方式，自己当时并不知道，自己只知道一种注册方法，就是首先根据native 方法名，生成Java_com_xxx_MethodName(xxx,xxx);当然这个c/c++源码文件中需要引入jni.h，然后把这个c/c++源码编译成so文件。
+自己后来百度了一下，网上有人数还有一种注册方式是动态注册，我就把关于动态注册的东西直接拷贝过来：
+JNI 允许你提供一个函数映射表，注册给Jave虚拟机，这样Jvm就可以用函数映射表来调用相应的函数，就可以不必通过函数名来查找需要调用的函数了。Java与JNI通过JNINativeMethod的结构来建立联系，它在jni.h中被定义，其结构内容如下：
+typedef struct {
+const char* name;
+const char* signature;
+void* fnPtr;
+} JNINativeMethod;
+第一个变量name是Java中函数的名字。
+第二个变量signature，用字符串是描述了函数的参数和返回值
+第三个变量fnPtr是函数指针，指向C函数。
+当java通过System.loadLibrary加载完JNI动态库后，紧接着会查找一个JNI_OnLoad的函数，如果有，就调用它，
+而动态注册的工作就是在这里完成的。
+1)JNI_OnLoad()函数
+JNI_OnLoad()函数在VM执行System.loadLibrary(xxx)函数时被调用，它有两个重要的作用：
+指定JNI版本：告诉VM该组件使用那一个JNI版本(若未提供JNI_OnLoad()函数，VM会默认该使用最老的JNI 1.1版)，如果要使用新版本的JNI，
+例如JNI 1.4版，则必须由JNI_OnLoad()函数返回常量JNI_VERSION_1_4(该常量定义在jni.h中) 来告知VM。
+初始化设定，当VM执行到System.loadLibrary()函数时，会立即先呼叫JNI_OnLoad()方法，因此在该方法中进行各种资源的初始化操作最为恰当，
+2)RegisterNatives
+RegisterNatives在AndroidRunTime里定义
+syntax:
+jint RegisterNatives(jclass clazz, const JNINativeMethod* methods,jint nMethods)
+Q：App在什么情况下会出现内存泄露？如何避免这些情况？
+A：造成内存泄露的可能性有很多，我说几种吧，1）资源未及时释放，比如引用的io流资源、网络资源、数据库游标Cursor等没有释放2）注册的监听器、广播等未及时取消3）集合对象没有及时清理4）不良代码
+    避免上述问题，主要还看程序员知识掌握的程度和编码经验的多少，但是从技术角度考虑我们需要注意一些细节，比如，重复使用的资源可以考虑使用缓存技术、池技术。使用的任何资源都记得关闭或者异常处理，保证在最恶劣的情况下也能使资源得到释放。对于图片的操作要注意缓存的使用，同时要记住对图片对象进行及时的回收。使用ListView的时候，尽量让ConvertView得到复用。
+3）逻辑思考
+Q：你让工人为你工作7天，给你工人的回报是一根金条，金条评分成7段，你必须在每天结束时给他们一段金条，如果只许你两次把金条弄断，如何给你的工人付费？
+PS：因为上面的问题自己回答的都比较溜，所有这个逻辑思考题，面试官直接说我想着你也会就不做吧。哈哈~面试官已经放弃继续考察我了，嗨皮~~~然后他去找老大去了，趁机我赶紧把笔试题给偷拍了下来（是不是阳哥胆子越来越大呀？！），这样才能大家看到真实的笔试题是什么样子滴

@@ -1,0 +1,11 @@
+深圳市宝和停车科技有限公司
+2015-12-4
+
+1.string.IsNullOrEmpty和string.IsNullOrWhiteSpace的区别
+  string.IsNullOrEmpty判断字符串是否为null或者string.Empty，而string.IsNullOrWhiteSpace判断所有空白字符，功能相当于string.IsNullOrEmpty和string.Trim().Length总和
+
+2.SQLServer和MySql的区别
+  MySql最大的特点是跨平台
+
+3.实现局部刷新有哪两种方式
+  Ajax和iframe
